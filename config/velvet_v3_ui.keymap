@@ -25,7 +25,7 @@
             label = "MOUSE_LAYER";
             bindings = <&mo>;
             #binding-cells = <1>;
-            release-after-ms = <200>;
+            release-after-ms = <500>;
         };
 
         zip_auto_mouse: zip_auto_mouse {
@@ -35,6 +35,118 @@
             excluded-positions = <>;
         };
     };
+
+/* custom macro definitions */
+/ {
+    macros {
+
+        // selects all and then does caps - for wisetime
+        cap_in_Chrome: cap_in_Chrome {
+            label = "&CAP_IN_CHROME";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>
+                , <&kp LG(A)>
+                , <&macro_wait_time 100>
+                , <&macro_tap>
+                , <&kp LG(LA(N1))>;
+        };
+
+        maching_parentheses: maching_parentheses {
+            label = "&MACHING_PARENTHESES";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>
+                , <&kp LS(N9)>
+                , <&macro_tap>
+                , <&kp LS(N0)>
+                , <&macro_tap>
+                , <&kp SPACE>
+                , <&macro_tap>
+                , <&kp LEFT>
+                , <&kp LEFT>;
+        };
+
+        maching_brakets: maching_brakets {
+            label = "&MACHING_BRAKETS";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>
+                , <&kp LBKT>
+                , <&macro_tap>
+                , <&kp RBKT>
+                , <&macro_tap>
+                , <&kp LEFT>
+                , <&macro_wait_time 15>
+                , <&macro_tap>
+                , <&caps_word>;
+        };
+
+        maching_quotes: maching_quotes {
+            label = "&MACHING_QUOTES";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>
+                , <&kp SQT>
+                , <&macro_tap>
+                , <&kp SQT>
+                , <&macro_tap>
+                , <&kp LEFT>;
+        };
+
+        Paste_Unformatted: Paste_Unformatted {
+            label = "&PASTE_UNFORMATTED";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(LC(V))>
+                , <&macro_wait_time 200>
+                , <&kp U>
+                , <&macro_tap_time 100>
+                , <&kp RET>;
+        };
+    };
+};
+/* custom behaiors definitions */
+/ {
+    behaviors {
+
+
+cap_in_Chrome
+
+        // for all caps for WiseTime
+        cap_in_ChromeP: cap_in_ChromeP {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            bindings = <&cap_in_Chrome>, <&kp>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <200>;
+            hold-trigger-on-release;
+        };
+
+        // a mt for a parenthesis macro
+        matchingholdP: matchingholdP {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            bindings = <&maching_parentheses>, <&kp>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <200>;
+            hold-trigger-on-release;
+        };
+
+        MIS_FIRE: MIS_FIRE {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+        };
+    };
+};
+j
 
     keymap {
         compatible = "zmk,keymap";
