@@ -150,8 +150,8 @@
         base {
             bindings = <
 &kp ESC    &kp Q  &kp W     &kp E     &kp R      &kp T                        &mt LG(Y) Y  &mt LG(U) U  &mt LG(I) I    &mt LG(O) O &kp P     &kp GRAVE
-&kp TAB    &mt LG(A) A  &kp S     &kp D     &mt LG(F) F      &kp G                        &kp H  &kp J  &kp K      &kp L     &kp SEMI  &kp SQT
-&kp LCTRL  &mt LG(Z) Z  &mt LG(X) X   &mt LG(C) C &mt LG(V) V  &mt LG(B) B    &kp N  &kp M  &kp COMMA  &kp DOT   &kp SLASH   &lt 5 LC(ESC)
+&kp TAB    &mt LG(A) A  &kp S     &kp D     &mt LG(F) F      &kp G                        &kp H  &kp J  &kp K      &kp L     &lt 5 SEMI  &kp SQT
+&kp LCTRL  &mt LG(Z) Z  &mt LG(X) X   &mt LG(C) C &mt LG(V) V  &mt LG(B) B    &kp N  &kp M  &kp COMMA  &kp DOT   &kp SLASH   &kp LC(ESC)
                   &kp LALT  &kp LGUI  &kp BSPC  &kp LSHFT    &mo 1  &kp RET  &kp SPACE  &mo 2  &kp RBKT
             >;
 
@@ -273,7 +273,7 @@
 &trackball { cpi = <1600>; };
 
 &trackball_listener {
-    input-processors = <&zip_auto_mouse 4 1000>, <&zip_xy_scaler 9 20>;
+    input-processors = <&zip_auto_mouse 4 700>, <&zip_xy_scaler 9 20>;
 
     scroller {
         layers = <5>;
