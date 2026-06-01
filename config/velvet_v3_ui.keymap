@@ -175,12 +175,12 @@
         nav {
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
             // @1@ | ////      | 1         | 2         | 3         | 4         | 5         |                     | 6         | 7         | 8         | 9         | 0         | ////      |
-            // @2@ | ////      | WiseTime  | ////      | ////      | ////      | Enter     |                     | ////      | Left      | Down      | Up        | Right     | ////      |
+            // @2@ | ////      | WiseTime  | ////      | ////      | ////      | Enter     |                     | Alt+Left  | Left      | Down      | Up        | Right     | Alt+Right |
             // @3@ | ////      | ////      | Home      | Insert    | End       | Delete    |                     | Caps Lock | Ctrl+Left | Page Down | Page Up   | Ctrl+Right| ////      |
             // @4@                         | ////      | ////      | ////      | ////      | //// |  | Delete    | Adjust↑   |  *BALL*   | ////      |
             bindings = <
                    &trans  &kp N1  &kp N2    &kp N3   &kp N4   &kp N5                     &kp N6    &kp N7        &kp N8         &kp N9       &kp N0         &trans
-                   &trans  &cap_in_Chrome  &trans    &trans   &trans   &kp RET                    &trans    &kp LEFT      &kp DOWN       &kp UP       &kp RIGHT      &trans
+                   &trans  &cap_in_Chrome  &trans    &trans   &trans   &kp RET                    &kp LA(LEFT)    &kp LEFT      &kp DOWN       &kp UP       &kp RIGHT      &kp LA(RIGHT)
                    &trans  &trans  &kp HOME  &kp INS  &kp END  &kp DEL                    &kp CLCK  &kp LC(LEFT)  &kp PAGE_DOWN  &kp PAGE_UP  &kp LC(RIGHT)  &trans
                                    &trans    &trans   &trans   &trans   &trans    &kp DEL  &mo 3     &trans        &trans
             >;
@@ -223,13 +223,13 @@
         mouse {
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
             // @1@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
-            // @2@ | ////      | Scroll↑   | Mid Click | Rt Click  | Lt Click  | Sniper↑   |                     | Sniper↑   | Lt Click  | Rt Click  | Mid Click | Scroll↑   | ////      |
-            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @2@ | ////      | Scroll↑   | Mid Click | Rt Click  | Lt Click  | Sniper↑   |                     | Alt+Left  | Lt Click  | Rt Click  | Mid Click | Scroll↑   | Alt+Right |
+            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | Alt+Left  | ////      | ////      | Alt+Right | ////      |
             // @4@                         | ////      | ////      | ////      | ////      | //// |  | ////      | ////      |  *BALL*   | ////      |
             bindings = <
                    &trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
-                   &trans  &mo 5   &mkp MB3  &mkp MB2  &mkp MB1  &mo 6                     &mo 6   &mkp MB1  &mkp MB2  &mkp MB3  &mo 5   &trans
-                   &trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
+                   &trans  &mo 5   &mkp MB3  &mkp MB2  &mkp MB1  &mo 6                     &kp LA(LEFT)   &mkp MB1  &mkp MB2  &mkp MB3  &mo 5   &kp LA(RIGHT)
+                   &trans  &trans  &trans    &trans    &trans    &trans                    &trans  &kp LA(LEFT)    &trans    &trans    &kp LA(RIGHT)  &trans
                                    &trans    &trans    &trans    &trans  &trans    &trans  &trans  &trans    &trans
             >;
 
