@@ -123,12 +123,21 @@
         // a mt for a parenthesis macro
         matchingholdP: matchingholdP {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
+            #binding-cells = <1>;
             tapping-term-ms = <200>;
             bindings = <&maching_parentheses>, <&kp>;
             flavor = "tap-preferred";
             quick-tap-ms = <200>;
             hold-trigger-on-release;
+        };
+
+        macro_hold_tap: macro_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&maching_brakets>, <&maching_parentheses>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <200>;
         };
 
         MIS_FIRE: MIS_FIRE {
@@ -148,121 +157,178 @@
         compatible = "zmk,keymap";
 
         base {
+            //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
+            // @1@ | Escape    | Q         | W         | E         | R         | T         |                     | Cmd+Y/Y   | Cmd+U/U   | Cmd+I/I   | Cmd+O/O   | P         | Grave     |
+            // @2@ | Tab       | Cmd+A/A   | S         | D         | Cmd+F/F   | G         |                     | H         | J         | K         | L         | Scroll/;  | '         |
+            // @3@ | Ctrl      | Cmd+Z/Z   | Cmd+X/X   | Cmd+C/C   | Cmd+V/V   | Cmd+B/B   |                     | N         | M         | ,         | .         | /         | Ctrl+Esc  |
+            // @4@                         | Alt       | Cmd       | Backspace | Shift     | Nav↑ |  | Enter     | Space     |  *BALL*   | Sym↑      | ()/[]     |
             bindings = <
-&kp ESC    &kp Q  &kp W     &kp E     &kp R      &kp T                        &mt LG(Y) Y  &mt LG(U) U  &mt LG(I) I    &mt LG(O) O &kp P     &kp GRAVE
-&kp TAB    &mt LG(A) A  &kp S     &kp D     &mt LG(F) F      &kp G                        &kp H  &kp J  &kp K      &kp L     &lt 5 SEMI  &kp SQT
-&kp LCTRL  &mt LG(Z) Z  &mt LG(X) X   &mt LG(C) C &mt LG(V) V  &mt LG(B) B    &kp N  &kp M  &kp COMMA  &kp DOT   &kp SLASH   &kp LC(ESC)
-                  &kp LALT  &kp LGUI  &kp BSPC  &kp LSHFT    &mo 1  &kp RET  &kp SPACE  &mo 2  &kp RBKT
+                   &kp ESC    &kp Q  &kp W     &kp E     &kp R      &kp T                        &mt LG(Y) Y  &mt LG(U) U  &mt LG(I) I    &mt LG(O) O &kp P     &kp GRAVE
+                   &kp TAB    &mt LG(A) A  &kp S     &kp D     &mt LG(F) F      &kp G                        &kp H  &kp J  &kp K      &kp L     &lt 5 SEMI  &kp SQT
+                   &kp LCTRL  &mt LG(Z) Z  &mt LG(X) X   &mt LG(C) C &mt LG(V) V  &mt LG(B) B    &kp N  &kp M  &kp COMMA  &kp DOT   &kp SLASH   &kp LC(ESC)
+                                       &kp LALT  &kp LGUI  &kp BSPC  &kp LSHFT    &mo 1  &kp RET  &kp SPACE  &mo 2  &macro_hold_tap
             >;
 
             display-name = "Base";
         };
 
         nav {
+            //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
+            // @1@ | ////      | 1         | 2         | 3         | 4         | 5         |                     | 6         | 7         | 8         | 9         | 0         | ////      |
+            // @2@ | ////      | WiseTime  | ////      | ////      | ////      | Enter     |                     | ////      | Left      | Down      | Up        | Right     | ////      |
+            // @3@ | ////      | ////      | Home      | Insert    | End       | Delete    |                     | Caps Lock | Ctrl+Left | Page Down | Page Up   | Ctrl+Right| ////      |
+            // @4@                         | ////      | ////      | ////      | ////      | //// |  | Delete    | Adjust↑   |  *BALL*   | ////      |
             bindings = <
-&trans  &kp N1  &kp N2    &kp N3   &kp N4   &kp N5                     &kp N6    &kp N7        &kp N8         &kp N9       &kp N0         &trans
-&trans  &cap_in_Chrome  &trans    &trans   &trans   &kp RET                    &trans    &kp LEFT      &kp DOWN       &kp UP       &kp RIGHT      &trans
-&trans  &trans  &kp HOME  &kp INS  &kp END  &kp DEL                    &kp CLCK  &kp LC(LEFT)  &kp PAGE_DOWN  &kp PAGE_UP  &kp LC(RIGHT)  &trans
-                &trans    &trans   &trans   &trans   &trans    &kp DEL  &mo 3     &trans        &trans         &trans
+                   &trans  &kp N1  &kp N2    &kp N3   &kp N4   &kp N5                     &kp N6    &kp N7        &kp N8         &kp N9       &kp N0         &trans
+                   &trans  &cap_in_Chrome  &trans    &trans   &trans   &kp RET                    &trans    &kp LEFT      &kp DOWN       &kp UP       &kp RIGHT      &trans
+                   &trans  &trans  &kp HOME  &kp INS  &kp END  &kp DEL                    &kp CLCK  &kp LC(LEFT)  &kp PAGE_DOWN  &kp PAGE_UP  &kp LC(RIGHT)  &trans
+                                   &trans    &trans   &trans   &trans   &trans    &kp DEL  &mo 3     &trans        &trans
             >;
 
             display-name = "Nav";
         };
 
         sym {
+            //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
+            // @1@ | ////      | ////      | <         | =         | >         | `         |                     | ^         | "         | _         | '         | ////      | ////      |
+            // @2@ | ////      | \         | (         | -         | )         | +         |                     | %         | {         | ;         | }         | !         | ?         |
+            // @3@ | ////      | ////      | *         | :         | /         | $         |                     | @         | |         | ~         | &         | ////      | ////      |
+            // @4@                         | ////      | ////      | ////      | Adjust↑   | #    |  | ////      | ////      |  *BALL*   | ////      |
             bindings = <
-&trans  &trans    &kp LT    &kp EQUAL  &kp GT    &kp GRAVE                      &kp CARET  &kp DQT   &kp UNDER  &kp SQT   &trans    &trans
-&trans  &kp BSLH  &kp LPAR  &kp MINUS  &kp RPAR  &kp PLUS                       &kp PRCNT  &kp LBRC  &kp SEMI   &kp RBRC  &kp EXCL  &kp QUESTION
-&trans  &trans    &kp STAR  &kp COLON  &kp FSLH  &kp DLLR                       &kp AT     &kp PIPE  &kp TILDE  &kp AMPS  &trans    &trans
-                  &trans    &trans     &trans    &mo 3      &kp HASH    &trans  &trans     &trans    &trans     &trans
+                   &trans  &trans    &kp LT    &kp EQUAL  &kp GT    &kp GRAVE                      &kp CARET  &kp DQT   &kp UNDER  &kp SQT   &trans    &trans
+                   &trans  &kp BSLH  &kp LPAR  &kp MINUS  &kp RPAR  &kp PLUS                       &kp PRCNT  &kp LBRC  &kp SEMI   &kp RBRC  &kp EXCL  &kp QUESTION
+                   &trans  &trans    &kp STAR  &kp COLON  &kp FSLH  &kp DLLR                       &kp AT     &kp PIPE  &kp TILDE  &kp AMPS  &trans    &trans
+                                     &trans    &trans     &trans    &mo 3      &kp HASH    &trans  &trans     &trans    &trans
             >;
 
             display-name = "Symbols";
         };
 
         adj {
+            //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
+            // @1@ | Bootloader| ////      | F1        | F2        | F3        | F4        |                     | BT Dev 0  | BT Dev 1  | BT Dev 2  | BT Dev 3  | BT Dev 4  | BT Clear  |
+            // @2@ | ////      | ////      | F5        | F6        | F7        | F8        |                     | Bluetooth | Vol Down  | Mute      | Vol Up    | ////      | Studio    |
+            // @3@ | ////      | ////      | F9        | F10       | F11       | F12       |                     | USB       | Prev Track| Play/Pause| Next Track| ////      | ////      |
+            // @4@                         | ////      | ////      | ////      | ////      | //// |  | ////      | ////      |  *BALL*   | ////      |
             bindings = <
-&bootloader  &none  &kp F1  &kp F2   &kp F3   &kp F4                   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2      &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR
-&none        &none  &kp F5  &kp F6   &kp F7   &kp F8                   &out OUT_BLE  &kp C_VOL_DN  &kp C_MUTE        &kp C_VOL_UP  &none         &studio_unlock
-&none        &none  &kp F9  &kp F10  &kp F11  &kp F12                  &out OUT_USB  &kp C_PREV    &kp C_PLAY_PAUSE  &kp C_NEXT    &none         &none
-                    &none   &none    &none    &none    &none    &none  &none         &none         &none             &none
+                   &bootloader  &none  &kp F1  &kp F2   &kp F3   &kp F4                   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2      &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR
+                   &none        &none  &kp F5  &kp F6   &kp F7   &kp F8                   &out OUT_BLE  &kp C_VOL_DN  &kp C_MUTE        &kp C_VOL_UP  &none         &studio_unlock
+                   &none        &none  &kp F9  &kp F10  &kp F11  &kp F12                  &out OUT_USB  &kp C_PREV    &kp C_PLAY_PAUSE  &kp C_NEXT    &none         &none
+                                       &none   &none    &none    &none    &none    &none  &none         &none         &none
             >;
 
             display-name = "Adjust";
         };
 
         mouse {
+            //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
+            // @1@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @2@ | ////      | Scroll↑   | Mid Click | Rt Click  | Lt Click  | Sniper↑   |                     | Sniper↑   | Lt Click  | Rt Click  | Mid Click | Scroll↑   | ////      |
+            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @4@                         | ////      | ////      | ////      | ////      | //// |  | ////      | ////      |  *BALL*   | ////      |
             bindings = <
-&trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
-&trans  &mo 5   &mkp MB3  &mkp MB2  &mkp MB1  &mo 6                     &mo 6   &mkp MB1  &mkp MB2  &mkp MB3  &mo 5   &trans
-&trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
-                &trans    &trans    &trans    &trans  &trans    &trans  &trans  &trans    &trans    &trans
+                   &trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
+                   &trans  &mo 5   &mkp MB3  &mkp MB2  &mkp MB1  &mo 6                     &mo 6   &mkp MB1  &mkp MB2  &mkp MB3  &mo 5   &trans
+                   &trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
+                                   &trans    &trans    &trans    &trans  &trans    &trans  &trans  &trans    &trans
             >;
 
             display-name = "Mouse";
         };
 
         scroll {
+            //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
+            // @1@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @2@ | ////      | ////      | Mid Click | Rt Click  | Lt Click  | ////      |                     | ////      | Lt Click  | Rt Click  | Mid Click | ////      | ////      |
+            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @4@                         | ////      | ////      | ////      | ////      | //// |  | ////      | ////      |  *BALL*   | ////      |
+            // (Trackball scrolls in this layer)
             bindings = <
-&trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
-&trans  &trans  &mkp MB3  &mkp MB2  &mkp MB1  &trans                    &trans  &mkp MB1  &mkp MB2  &mkp MB3  &trans  &trans
-&trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
-                &trans    &trans    &trans    &trans  &trans    &trans  &trans  &trans    &trans    &trans
+                   &trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
+                   &trans  &trans  &mkp MB3  &mkp MB2  &mkp MB1  &trans                    &trans  &mkp MB1  &mkp MB2  &mkp MB3  &trans  &trans
+                   &trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
+                                   &trans    &trans    &trans    &trans  &trans    &trans  &trans  &trans    &trans
             >;
 
             display-name = "Scroll";
         };
 
         sniper {
+            //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
+            // @1@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @2@ | ////      | ////      | Mid Click | Rt Click  | Lt Click  | ////      |                     | ////      | Lt Click  | Rt Click  | Mid Click | ////      | ////      |
+            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @4@                         | ////      | ////      | ////      | ////      | //// |  | ////      | ////      |  *BALL*   | ////      |
+            // (Trackball moves slowly/precisely in this layer)
             bindings = <
-&trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
-&trans  &trans  &mkp MB3  &mkp MB2  &mkp MB1  &trans                    &trans  &mkp MB1  &mkp MB2  &mkp MB3  &trans  &trans
-&trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
-                &trans    &trans    &trans    &trans  &trans    &trans  &trans  &trans    &trans    &trans
+                   &trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
+                   &trans  &trans  &mkp MB3  &mkp MB2  &mkp MB1  &trans                    &trans  &mkp MB1  &mkp MB2  &mkp MB3  &trans  &trans
+                   &trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
+                                   &trans    &trans    &trans    &trans  &trans    &trans  &trans  &trans    &trans
             >;
 
             display-name = "Sniper";
         };
 
         User0 {
+            //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
+            // @1@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @2@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @4@                         | ////      | ////      | ////      | ////      | //// |  | ////      | ////      |  *BALL*   | ////      |
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                   &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+                   &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+                   &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+                                   &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans
             >;
 
             display-name = "User0";
         };
 
         User1 {
+            //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
+            // @1@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @2@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @4@                         | ////      | ////      | ////      | ////      | //// |  | ////      | ////      |  *BALL*   | ////      |
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                   &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+                   &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+                   &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+                                   &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans
             >;
 
             display-name = "User1";
         };
 
         User2 {
+            //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
+            // @1@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @2@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @4@                         | ////      | ////      | ////      | ////      | //// |  | ////      | ////      |  *BALL*   | ////      |
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                   &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+                   &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+                   &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+                                   &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans
             >;
 
             display-name = "User2";
         };
 
         User3 {
+            //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
+            // @1@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @2@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
+            // @4@                         | ////      | ////      | ////      | ////      | //// |  | ////      | ////      |  *BALL*   | ////      |
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                   &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+                   &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+                   &trans  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+                                   &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans
             >;
 
             display-name = "User3";
