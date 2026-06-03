@@ -149,6 +149,21 @@
             quick-tap-ms = <200>;
             require-prior-idle-ms = <125>;
         };
+
+        bspc_del: bspc_del {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp BSPC>, <&kp DEL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        mo_to: mo_to {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <1>;
+            tapping-term-ms = <275>;
+            bindings = <&mo>, <&to>;
+            flavor = "tap-preferred";
+        };
     };
 };
 
@@ -161,12 +176,12 @@
             // @1@ | Escape    | Q         | W         | E         | R         | T         |                     | Cmd+Y/Y   | Cmd+U/U   | Cmd+I/I   | Cmd+O/O   | P         | Grave     |
             // @2@ | Tab       | Cmd+A/A   | S         | D         | Cmd+F/F   | G         |                     | H         | J         | K         | L         | Scroll/;  | '         |
             // @3@ | Ctrl      | Cmd+Z/Z   | Cmd+X/X   | Cmd+C/C   | Cmd+V/V   | Cmd+B/B   |                     | N         | M         | ,         | .         | /         | Ctrl+Esc  |
-            // @4@                         | Alt       | Cmd       | Backspace | Shift     | Nav↑ |  | Enter     | Space     |  *BALL*   | Sym↑      | ()/[]     |
+            // @4@                         | Alt       | Backspace | Nav↑/To   | Shift     | Cmd  |  | Enter     | Space     |  *BALL*   | Sym↑      | ()/[]     |
             bindings = <
                    &kp ESC    &kp Q  &kp W     &kp E     &kp R      &kp T                        &mt LG(Y) Y  &mt LG(U) U  &mt LG(I) I    &mt LG(O) O &kp P     &kp GRAVE
                    &kp TAB    &mt LG(A) A  &kp S     &kp D     &mt LG(F) F      &kp G                        &kp H  &kp J  &kp K      &kp L     &lt 5 SEMI  &kp SQT
                    &kp LCTRL  &mt LG(Z) Z  &mt LG(X) X   &mt LG(C) C &mt LG(V) V  &mt LG(B) B    &kp N  &kp M  &kp COMMA  &kp DOT   &kp SLASH   &kp LC(ESC)
-                                       &kp LALT  &kp LGUI  &kp BSPC  &kp LSHFT    &mo 1  &kp RET  &kp SPACE  &mo 2  &macro_hold_tap
+                                       &kp LALT  &kp BSPC  &mo_to 1  &kp LSHFT    &kp LGUI  &kp RET  &kp SPACE  &mo 2  &macro_hold_tap
             >;
 
             display-name = "Base";
@@ -175,14 +190,14 @@
         nav {
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
             // @1@ | ////      | 1         | 2         | 3         | 4         | 5         |                     | 6         | 7         | 8         | 9         | 0         | ////      |
-            // @2@ | ////      | WiseTime  | ////      | ////      | ////      | Enter     |                     | Alt+Left  | Left      | Down      | Up        | Right     | Alt+Right |
+            // @2@ | ////      | WiseTime  | ////      | ////      | Backspace | Enter     |                     | Alt+Left  | Left      | Down      | Up        | Right     | Alt+Right |
             // @3@ | ////      | ////      | Home      | Insert    | End       | Delete    |                     | Caps Lock | Ctrl+Left | Page Down | Page Up   | Ctrl+Right| ////      |
-            // @4@                         | ////      | ////      | ////      | ////      | //// |  | Delete    | Adjust↑   |  *BALL*   | ////      |
+            // @4@                         | ////      | ////      | To Base   | ////      | //// |  | Bspc/Del  | Adjust↑   |  *BALL*   | ////      |
             bindings = <
                    &trans  &kp N1  &kp N2    &kp N3   &kp N4   &kp N5                     &kp N6    &kp N7        &kp N8         &kp N9       &kp N0         &trans
-                   &trans  &cap_in_Chrome  &trans    &trans   &trans   &kp RET                    &kp LA(LEFT)    &kp LEFT      &kp DOWN       &kp UP       &kp RIGHT      &kp LA(RIGHT)
+                   &trans  &cap_in_Chrome  &trans    &trans   &kp BSPC   &kp RET                    &kp LA(LEFT)    &kp LEFT      &kp DOWN       &kp UP       &kp RIGHT      &kp LA(RIGHT )
                    &trans  &trans  &kp HOME  &kp INS  &kp END  &kp DEL                    &kp CLCK  &kp LC(LEFT)  &kp PAGE_DOWN  &kp PAGE_UP  &kp LC(RIGHT)  &trans
-                                   &trans    &trans   &trans   &trans   &trans    &kp DEL  &mo 3     &trans        &trans
+                                   &trans    &trans   &to 0    &trans   &trans    &bspc_del  &mo 3     &trans        &trans
             >;
 
             display-name = "Nav";
