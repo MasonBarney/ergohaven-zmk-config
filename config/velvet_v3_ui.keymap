@@ -133,7 +133,7 @@
 
         macro_hold_tap: macro_hold_tap {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             tapping-term-ms = <200>;
             bindings = <&maching_brakets>, <&maching_parentheses>;
             flavor = "tap-preferred";
@@ -181,7 +181,7 @@
                    &kp ESC    &kp Q  &kp W     &kp E     &kp R      &kp T                        &mt LG(Y) Y  &mt LG(U) U  &mt LG(I) I    &mt LG(O) O &kp P     &kp GRAVE
                    &kp TAB    &mt LG(A) A  &kp S     &kp D     &mt LG(F) F      &kp G                        &kp H  &kp J  &kp K      &kp L     &lt 5 SEMI  &kp SQT
                    &kp LCTRL  &mt LG(Z) Z  &mt LG(X) X   &mt LG(C) C &mt LG(V) V  &mt LG(B) B    &kp N  &kp M  &kp COMMA  &kp DOT   &kp SLASH   &kp LC(ESC)
-                                       &kp LALT  &kp BSPC  &mo_to 1 1  &kp LSHFT    &kp LGUI  &kp RET  &kp SPACE  &mo 2  &macro_hold_tap
+                                       &kp LALT  &kp BSPC  &mo_to 1 1  &kp LSHFT    &kp LGUI  &kp RET  &kp SPACE  &mo 2  &macro_hold_tap 0 0
             >;
 
             display-name = "Base";
