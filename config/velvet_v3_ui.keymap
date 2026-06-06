@@ -164,6 +164,13 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        paste_unformatted_word: paste_unformatted_word {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&Paste_Unformatted_Word>, <&kp LG(LA(LS(V)))>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
         mo_to: mo_to {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -183,12 +190,12 @@
             // @1@ | Escape    | Q         | W         | E         | R         | T         |                     | Cmd+Y/Y   | Cmd+U/U   | Cmd+I/I   | Cmd+O/O   | P         | Grave     |
             // @2@ | Tab       | Cmd+A/A   | S         | D         | Cmd+F/F   | G         |                     | H         | J         | K         | L         | Scroll/;  | '         |
             // @3@ | Bspc/Del  | Cmd+Z/Z   | Cmd+X/X   | Cmd+C/C   | Cmd+V/V   | Cmd+B/B   |                     | N         | M         | ,         | .         | /         | Ctrl+Esc  |
-            // @4@                         | Alt       | Ctrl      | Nav↑/To   | Shift     | Cmd  |  | Enter     | Space     |  *BALL*   | Sym↑      | ()/[]     |
+            // @4@                         | Alt       | Ctrl      | Nav↑/To   | Shift     | Cmd  |  | Cmd+Ent/Ent | Space  |  *BALL*   | Sym↑      | ()/[]     |
             bindings = <
                    &kp ESC    &kp Q  &kp W     &kp E     &kp R      &kp T                        &mt LG(Y) Y  &mt LG(U) U  &mt LG(I) I    &mt LG(O) O &kp P     &kp GRAVE
                    &kp TAB    &mt LG(A) A  &kp S     &kp D     &mt LG(F) F      &kp G                        &kp H  &kp J  &kp K      &kp L     &lt 5 SEMI  &kp SQT
                    &bspc_del  &mt LG(Z) Z  &mt LG(X) X   &mt LG(C) C &mt LG(V) V  &mt LG(B) B    &kp N  &kp M  &kp COMMA  &kp DOT   &kp SLASH   &kp LC(ESC)
-                                       &kp LALT  &kp LCTRL  &mo_to 1 1  &kp LSHFT    &kp LGUI  &kp RET  &kp SPACE  &mo 2  &macro_hold_tap 0 0
+                                       &kp LALT  &kp LCTRL  &mo_to 1 1  &kp LSHFT    &kp LGUI  &mt LG(RET) RET  &kp SPACE  &mo 2  &macro_hold_tap 0 0
             >;
 
             display-name = "Base";
@@ -198,12 +205,12 @@
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
             // @1@ | Cmd GRAVE | 1         | 2         | 3         | 4         | 5         |                     | 6         | 7         | 8         | 9         | 0         | ////      |
             // @2@ | ////      | WiseTime  | Home      | Insert    | End       | Enter     |                     | Alt+Left  | Left      | Down      | Up        | Right/:   | Alt+Right |
-            // @3@ | ////      | ////      | ////      | ////      | Pst Unfmt | ////      |                     | Caps Lock | Ctrl+Left | ,         | .         | Ctrl+Right| ////      |
+            // @3@ | ////      | ////      | ////      | ////      | Pst Unfmt | ////      |                     | Caps Lock | GUI+Left | ,         | .         | GUI+Right| ////      |
             // @4@                         | ////      | ////      | To Base   | ////      | //// |  | Bspc/Del  | Adjust↑   |  *BALL*   | ////      |
             bindings = <
                    &kp LG(GRAVE)  &kp N1  &kp N2    &kp N3   &kp N4   &kp N5                     &kp N6    &kp N7        &kp N8         &kp N9       &kp N0         &trans
                    &trans  &cap_in_Chrome  &kp HOME  &kp INS  &kp END   &kp RET                    &kp LA(LEFT)    &kp LEFT      &kp DOWN       &kp UP       &right_colon   &kp LA(RIGHT)
-                   &trans  &trans   &trans  &trans  &Paste_Unformatted_Word  &trans                   &kp CLCK  &kp LC(LEFT)  &kp COMMA  &kp DOT  &kp LC(RIGHT)  &trans
+                   &trans  &trans   &trans  &trans  &paste_unformatted_word  &trans                   &kp CLCK  &kp LG(LEFT)  &kp COMMA  &kp DOT  &kp LG(RIGHT)  &trans
                                    &trans    &trans   &to 0    &trans   &trans    &bspc_del  &mo 3     &trans        &trans
             >;
 
@@ -246,12 +253,12 @@
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
             // @1@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
             // @2@ | ////      | Scroll↑   | Mid Click | Rt Click  | Lt Click  | Sniper↑   |                     | Alt+Left  | Lt Click  | Rt Click  | Mid Click | Scroll↑   | Alt+Right |
-            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | Alt+Left  | ////      | ////      | Alt+Right | ////      |
+            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | GUI+Left  | ////      | ////      | GUI+Right | ////      |
             // @4@                         | ////      | ////      | ////      | ////      | //// |  | ////      | ////      |  *BALL*   | ////      |
             bindings = <
                    &trans  &trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans  &trans
                    &trans  &mo 5   &mkp MB3  &mkp MB2  &mkp MB1  &mo 6                     &kp LA(LEFT)   &mkp MB1  &mkp MB2  &mkp MB3  &mo 5   &kp LA(RIGHT)
-                   &trans  &trans  &trans    &trans    &trans    &trans                    &trans  &kp LA(LEFT)    &trans    &trans    &kp LA(RIGHT)  &trans
+                   &trans  &trans  &trans    &trans    &trans    &trans                    &trans  &kp LG(LEFT)    &trans    &trans    &kp LG(RIGHT)  &trans
                                    &trans    &trans    &trans    &trans  &trans    &trans  &trans  &trans    &trans
             >;
 
