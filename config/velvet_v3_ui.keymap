@@ -104,8 +104,8 @@
                 , <&kp LEFT>;
         };
 
-        Paste_Unformatted: Paste_Unformatted {
-            label = "&PASTE_UNFORMATTED";
+        Paste_Unformatted_Word: Paste_Unformatted_Word {
+            label = "&PASTE_UNFORMATTED_WORD";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LG(LC(V))>
@@ -198,12 +198,12 @@
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
             // @1@ | Cmd GRAVE | 1         | 2         | 3         | 4         | 5         |                     | 6         | 7         | 8         | 9         | 0         | ////      |
             // @2@ | ////      | WiseTime  | Home      | Insert    | End       | Enter     |                     | Alt+Left  | Left      | Down      | Up        | Right/:   | Alt+Right |
-            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | Caps Lock | Ctrl+Left | ,         | .         | Ctrl+Right| ////      |
+            // @3@ | ////      | ////      | ////      | ////      | Pst Unfmt | ////      |                     | Caps Lock | Ctrl+Left | ,         | .         | Ctrl+Right| ////      |
             // @4@                         | ////      | ////      | To Base   | ////      | //// |  | Bspc/Del  | Adjust↑   |  *BALL*   | ////      |
             bindings = <
                    &kp LG(GRAVE)  &kp N1  &kp N2    &kp N3   &kp N4   &kp N5                     &kp N6    &kp N7        &kp N8         &kp N9       &kp N0         &trans
                    &trans  &cap_in_Chrome  &kp HOME  &kp INS  &kp END   &kp RET                    &kp LA(LEFT)    &kp LEFT      &kp DOWN       &kp UP       &right_colon   &kp LA(RIGHT)
-                   &trans  &trans   &trans  &trans  &trans  &trans                   &kp CLCK  &kp LC(LEFT)  &kp COMMA  &kp DOT  &kp LC(RIGHT)  &trans
+                   &trans  &trans   &trans  &trans  &Paste_Unformatted_Word  &trans                   &kp CLCK  &kp LC(LEFT)  &kp COMMA  &kp DOT  &kp LC(RIGHT)  &trans
                                    &trans    &trans   &to 0    &trans   &trans    &bspc_del  &mo 3     &trans        &trans
             >;
 
@@ -212,9 +212,9 @@
 
         sym {
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
-            // @1@ | ////      | ////      | <         | =         | >         | `         |                     | ^         | "         | _         | '         | ////      | ////      |
+            // @1@ | ////      | F1        | F1        | F1        | F1        | F1        |                     | F1        | F1        | F1        | F1        | F1        | ////      |
             // @2@ | ////      | \         | (         | -         | )         | +         |                     | %         | {         | ;         | }         | !         | ?         |
-            // @3@ | ////      | ////      | *         | :         | /         | $         |                     | @         | |         | ~         | &         | ////      | ////      |
+            // @3@ | ////      | ////      | <         | =         | >         | $         |                     | @         | |         | ~         | &         | ////      | ////      |
             // @4@                         | ////      | ////      | ////      | Adjust↑   | #    |  | ////      | ////      |  *BALL*   | ////      |
             bindings = <
                    &trans  &kp F1    &kp F2    &kp F3  &kp F4   &kp F5                     &kp F6  &kp F7   &kp F8  &kp F9   &kp F10    &trans
