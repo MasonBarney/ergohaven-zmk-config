@@ -198,12 +198,12 @@
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
             // @1@ | ////      | 1         | 2         | 3         | 4         | 5         |                     | 6         | 7         | 8         | 9         | 0         | ////      |
             // @2@ | ////      | WiseTime  | Home      | Insert    | End       | Enter     |                     | Alt+Left  | Left      | Down      | Up        | Right/:   | Alt+Right |
-            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | Caps Lock | Ctrl+Left | Page Down | Page Up   | Ctrl+Right| ////      |
+            // @3@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | Caps Lock | Ctrl+Left | ,         | .         | Ctrl+Right| ////      |
             // @4@                         | ////      | ////      | To Base   | ////      | //// |  | Bspc/Del  | Adjust↑   |  *BALL*   | ////      |
             bindings = <
                    &trans  &kp N1  &kp N2    &kp N3   &kp N4   &kp N5                     &kp N6    &kp N7        &kp N8         &kp N9       &kp N0         &trans
                    &trans  &cap_in_Chrome  &kp HOME  &kp INS  &kp END   &kp RET                    &kp LA(LEFT)    &kp LEFT      &kp DOWN       &kp UP       &right_colon   &kp LA(RIGHT)
-                   &trans  &trans   &trans  &trans  &trans  &trans                   &kp CLCK  &kp LC(LEFT)  &kp PAGE_DOWN  &kp PAGE_UP  &kp LC(RIGHT)  &trans
+                   &trans  &trans   &trans  &trans  &trans  &trans                   &kp CLCK  &kp LC(LEFT)  &kp COMMA  &kp DOT  &kp LC(RIGHT)  &trans
                                    &trans    &trans   &to 0    &trans   &trans    &bspc_del  &mo 3     &trans        &trans
             >;
 
