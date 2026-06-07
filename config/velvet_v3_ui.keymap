@@ -184,7 +184,7 @@
 / {
     keymap {
         compatible = "zmk,keymap";
-
+// Black
         base {
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
             // @1@ | Escape    | Q         | W         | E         | R         | T         |                     | Cmd+Y/Y   | Cmd+U/U   | Cmd+I/I   | Cmd+O/O   | P         | Grave     |
@@ -200,7 +200,7 @@
 
             display-name = "Base";
         };
-
+// Red
         nav {
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
             // @1@ | Cmd GRAVE | 1         | 2         | 3         | 4         | 5         |                     | 6         | 7         | 8         | 9         | 0         | ////      |
@@ -216,7 +216,7 @@
 
             display-name = "Nav";
         };
-
+// Blue
         sym {
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
             // @1@ | ////      | F1        | F1        | F1        | F1        | F1        |                     | F1        | F1        | F1        | F1        | F1        | ////      |
@@ -248,7 +248,7 @@
 
             display-name = "Adjust";
         };
-
+// Yellow
         mouse {
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
             // @1@ | ////      | ////      | ////      | ////      | ////      | ////      |                     | ////      | ////      | ////      | ////      | ////      | ////      |
