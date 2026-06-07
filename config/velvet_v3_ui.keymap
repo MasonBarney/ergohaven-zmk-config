@@ -160,7 +160,7 @@
         right_colon: right_colon {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp RIGHT>, <&kp COLON>;
+            bindings = <&mt LA(RIGHT) RIGHT>, <&kp COLON>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
@@ -204,13 +204,13 @@
         nav {
             //     |   #A#     |   #B#     |   #C#     |   #D#     |   #E#     |   #F#     | #G#  |  |   #H#     |   #I#     |   #J#     |   #K#     |   #L#     |   #M#     |   #N#     |
             // @1@ | Cmd GRAVE | 1         | 2         | 3         | 4         | 5         |                     | 6         | 7         | 8         | 9         | 0         | ////      |
-            // @2@ | ////      | WiseTime  | Home      | Insert    | End       | Enter     |                     | Alt+Left  | Left      | Down      | Up        | Right/:   | Alt+Right |
-            // @3@ | ////      | ////      | ////      | ////      | Pst Unfmt | ////      |                     | Caps Lock | GUI+Left | ,         | .         | GUI+Right| ////      |
+            // @2@ | ////      | WiseTime  | Home      | Wrd Para  | End       | Enter     |                     | Alt+Left  | Left      | Down      | Up        | Right/:   | Alt+Right |
+            // @3@ | ////      | ////      | ////      | ////      | Pst Unfmt | Word Cmnt |                     | Caps Lock | GUI+Left | ,         | .         | GUI+Right| ////      |
             // @4@                         | ////      | ////      | To Base   | ////      | //// |  | Bspc/Del  | Adjust↑   |  *BALL*   | ////      |
             bindings = <
                    &kp LG(GRAVE)  &kp N1  &kp N2    &kp N3   &kp N4   &kp N5                     &kp N6    &kp N7        &kp N8         &kp N9       &kp N0         &trans
-                   &trans  &cap_in_Chrome  &kp HOME  &kp INS  &kp END   &kp RET                    &kp LA(LEFT)    &kp LEFT      &kp DOWN       &kp UP       &right_colon   &kp LA(RIGHT)
-                   &trans  &trans   &trans  &trans  &paste_unformatted_word  &trans                   &kp CLCK  &kp LG(LEFT)  &kp COMMA  &kp DOT  &kp LG(RIGHT)  &trans
+                   &trans  &cap_in_Chrome  &kp HOME  &kp LS(LG(M))  &kp END   &kp RET                    &kp LA(LEFT)    &mt LA(LEFT) LEFT      &kp DOWN       &kp UP       &right_colon   &kp LA(RIGHT)
+                   &trans  &trans   &trans  &trans  &paste_unformatted_word  &kp LC(LA(LG(M)))                   &kp CLCK  &kp LG(LEFT)  &kp COMMA  &kp DOT  &kp LG(RIGHT)  &trans
                                    &trans    &trans   &to 0    &trans   &trans    &bspc_del  &mo 3     &trans        &trans
             >;
 
