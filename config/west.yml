@@ -2,16 +2,10 @@ manifest:
   remotes:
     - name: ergohaven
       url-base: https://github.com/ergohaven
-    - name: prospector
-      url-base: https://github.com/t-ogura
   projects:
     - name: ergohaven-zmk
       remote: ergohaven
       revision: main
       import: config/west.yml
-    - name: prospector-zmk-module
-      remote: prospector
-      revision: v2.2.2
-      path: modules/prospector-zmk-module
   self:
     path: config
