@@ -11,7 +11,9 @@
 /* Custom Device-tree */
 &mt {
     tapping-term-ms = <275>;
-    flavor = "tap-preferred";  
+    flavor = "tap-preferred";
+    quick-tap-ms = <200>;
+    require-prior-idle-ms = <150>;
 };
 &lt {
     tapping-term-ms = <275>;
@@ -190,13 +192,12 @@
             // @1@ | Escape    | Q         | W         | E         | R         | T         |                     | Cmd+Y/Y   | Cmd+U/U   | Cmd+I/I   | Cmd+O/O   | P         | Grave     |
             // @2@ | Tab       | Cmd+A/A   | S         | D         | Cmd+F/F   | G         |                     | H         | J         | K         | L         | Scroll/;  | '         |
             // @3@ | Bspc/Del  | Cmd+Z/Z   | Cmd+X/X   | Cmd+C/C   | Cmd+V/V   | Cmd+B/B   |                     | N         | M         | ,         | .         | /         | Ctrl+Esc  |
-            // @4@                         | Alt       | Ctrl      | Nav↑   
-| Shift     | Cmd  |  | Cmd+Ent/Ent | Space  |  *BALL*   | Sym↑      | ()/[]     |
+            // @4@                         | Alt       | Ctrl      | Nav↑      | Shift     | Cmd  |  | Cmd+Ent/Ent | Space  |  *BALL*   | Sym↑      | ()/[]     |
             bindings = <
                    &kp ESC    &kp Q  &kp W     &kp E     &kp R      &kp T                        &mt LG(Y) Y  &mt LG(U) U  &mt LG(I) I    &mt LG(O) O &kp P     &kp GRAVE
                    &kp TAB    &mt LG(A) A  &kp S     &kp D     &mt LG(F) F      &kp G                        &kp H  &kp J  &kp K      &kp L     &lt 5 SEMI  &kp SQT
                    &bspc_del  &mt LG(Z) Z  &mt LG(X) X   &mt LG(C) C &mt LG(V) V  &mt LG(B) B    &kp N  &kp M  &kp COMMA  &kp DOT   &kp SLASH   &kp LC(ESC)
-                                       &kp LALT  &kp LCTRL  &mo 1  &kp LSHFT    &kp LGUI  &mt LG(RET) RET  &kp SPACE &trans &mo 2  &macro_hold_tap 0 0
+                                       &kp LALT  &kp LCTRL  &mo 1  &kp LSHFT    &kp LGUI  &mt LG(RET) RET  &kp SPACE  &mo 2  &macro_hold_tap 0 0
             >;
 
             display-name = "Base";
